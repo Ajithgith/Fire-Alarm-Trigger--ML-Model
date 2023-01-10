@@ -1,0 +1,22 @@
+import numpy as np
+import pickle
+
+#loading the saved model
+
+loaded_model = pickle.load(open('C:/Users/ajith\Downloads/Trained Model/trained_model.sav', 'rb'))
+
+input_data = (3178,1654736509,9.381,56.86,11,400,13347,20160,939.575,1.78,1.85,12.25,1.911,0.043,3178)
+input_data_as_numpy_array = np.asarray(input_data)
+
+#reshaping the array as we are predicting only for one instance
+
+input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+
+
+prediction = loaded_model.predict(input_data_reshaped)
+print(prediction)
+    
+if(prediction[0] == 1):
+    print("Fire is there")
+else:
+    print("Fire is not there")
